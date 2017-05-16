@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface ViewController : UIViewController<UIPickerViewDelegate>
+{
+    NSMutableArray *monthsArray;
+    NSMutableArray *yearsArray;
+    NSDateComponents *currentDateComponents;
+}
 
 @end
 
