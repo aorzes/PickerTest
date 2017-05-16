@@ -13,6 +13,7 @@
     NSMutableArray *monthsArray;
     NSMutableArray *yearsArray;
     NSDateComponents *currentDateComponents;
+    NSArray *boje;
 }
 
 @end

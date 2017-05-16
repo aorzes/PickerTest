@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    boje = @[@1,@3,@5,@6];//tu se definira što će biti crveno
     currentDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     
     //Array for picker view
@@ -34,6 +35,7 @@
     myPickerView.showsSelectionIndicator = YES;
     [myPickerView selectRow:[currentDateComponents month]-1 inComponent:0 animated:YES];
     [self.view addSubview:myPickerView];
+    
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -62,7 +64,8 @@
     if (component==1) {
         [pickerView reloadComponent:0];
     }
-    NSLog(@"%ld,%ld",component,(long)row);
+    
+    NSLog(@"%ld,%@",component,component==0?[monthsArray objectAtIndex:row]:[yearsArray objectAtIndex:row]);
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
@@ -75,7 +78,12 @@
     if (component==0)
     {
         if (row+1<[currentDateComponents month] && [[yearsArray objectAtIndex:[pickerView selectedRowInComponent:1]] intValue]==[currentDateComponents year]) {
-            label.textColor = [UIColor grayColor];
+                label.textColor = [UIColor grayColor];
+        }
+        for (NSNumber *broj in boje) {
+        if (row==[broj integerValue]) {
+            label.textColor = [UIColor redColor];
+        }
         }
     }
     return label;
